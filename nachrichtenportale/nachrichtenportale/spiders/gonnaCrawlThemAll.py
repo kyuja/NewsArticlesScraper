@@ -1,20 +1,34 @@
-from scrapy.spiders import CSVFeedSpider
+import scrapy
+from scrapy import Request
+from scrapy.spiders import CSVFeedSpider, Rule, CrawlSpider
+from scrapy.linkextractors import LinkExtractor
+from datetime import datetime
+
+from .. import items
 
 
-class GonnacrawlthemallSpider(CSVFeedSpider):
+class GonnacrawlthemallSpider(scrapy.Spider):
     name = "gonnaCrawlThemAll"
-    allowed_domains = ["tagesschau.de"]
-    start_urls = ["https://tagesschau.de"]
-    #headers = ["id", "name", "description", "image_link"]
-    #delimiter = "\t"
+    allowed_domains = ["tagesschau.de", "zeit.de"]
+    start_urls = ["https://tagesschau.de", "https://zeit.de"]
 
-    # Do any adaptations you need here
-    #def adapt_response(self, response):
-    #    return response
+    def parse(self, response):
+        self.logger.info("Parse function called on %s", response.url)
+        main = response.xpath('//main')
+        urls = main.xpath('.//a/@href').get()
+        # for link in urls:
+        print(response.urljoin(urls))
+        return Request(response.urljoin(urls), callback=self.parse_item(response))
 
-    def parse_row(self, response, row):
-        i = {}
-        i["url"] = row["url"]
-        #i["name"] = row["name"]
-        #i["description"] = row["description"]
-        return i
+    def parse_item(self, response):
+        self.logger.info("Item function called on %s", response.url)
+        item = items.NachrichtenportalItem()
+        item['portal'] = "Tagesschau.de"
+        item['today'] = str(datetime.now())
+        item["nachricht_url"] = response.url
+        item["nachricht_title"] = response.xpath('//title/text()').get()
+        item['nachricht_keywords'] = response.xpath('//meta[@name="keywords"]/@content').get()
+        item['nachricht_text'] = response.xpath('//article').get()
+        item['nachricht_date'] = response.xpath('//meta[@name="date"]/@content').get()
+        item['nachricht_extern_links'] = "LINKS"  # response.xpath('')
+        print(item.items())
