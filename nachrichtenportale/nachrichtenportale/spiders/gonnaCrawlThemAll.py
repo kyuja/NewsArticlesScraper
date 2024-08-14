@@ -15,7 +15,7 @@ class GonnacrawlthemallSpider(scrapy.Spider):
     def __init__(self, portal=None, *args, **kwargs):
         super(GonnacrawlthemallSpider, self).__init__(*args, **kwargs)
         self.start_urls = [portal.get_url()]
-        self.allowed_domains = [portal.get_domain()]
+        self.allowed_domains = [portal.get_allowed_domain()]
         self.homepage_selector = portal.get_homepage()
         self.article_selector = portal.get_article()
 
@@ -23,7 +23,7 @@ class GonnacrawlthemallSpider(scrapy.Spider):
         self.logger.info("Parse function called on %s, with selectors %s and %s", self.start_urls,
                          self.homepage_selector, self.article_selector)
         main = response.css(self.homepage_selector)
-        urls = main.xpath('.//a/@href').getall()
+        urls = main.css('a::attr(href)').getall()
         self.logger.info('Found %i URLs from homepage', len(urls))
         for link in urls:
             if not link.startswith('https://'):
@@ -37,7 +37,6 @@ class GonnacrawlthemallSpider(scrapy.Spider):
         item['today'] = str(datetime.now())
         item["nachricht_url"] = response.url
         item["nachricht_title"] = response.css('title::text').get()
-        item['nachricht_keywords'] = response.xpath('//meta[@name="keywords"]/@content').get()
-        item['nachricht_article'] = response.css(self.article_selector)
-        item['nachricht_date'] = response.xpath('//meta[@name="date"]/@content').get()
-        print(item.items())
+        item['nachricht_keywords'] = response.css('meta[name="keywords"]::attr(content)').get()
+        item['nachricht_text'] = response.css(self.article_selector).getall()
+        item['nachricht_date'] = response.css('meta[name="date"]::attr(content)')

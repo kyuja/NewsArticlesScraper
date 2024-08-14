@@ -9,12 +9,6 @@ def get_domain(response):
     return domain
 
 
-def get_text(response):
-    text = response.xpath('//article//text()').getall()
-    text = ' '.join(text).strip()
-    return text
-
-
 def read_csv_to_list(csv_file):
     portale = []
     # '../nachrichtenportale/nachrichtenportale/data/Portale.csv'

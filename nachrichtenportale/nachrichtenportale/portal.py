@@ -1,23 +1,23 @@
 class Portal:
     url: str
-    domain: str
+    allowed_domain: str
     homepage: str
     article: str
 
     def __init__(self, url, domain, homepage, article):
         self.url = url
-        self.domain = domain
+        self.allowed_domain = domain
         self.homepage = homepage
         self.article = article
 
     def __str__(self):
-        return self.domain
+        return self.allowed_domain
 
     def get_url(self) -> str:
         return self.url
 
-    def get_domain(self) -> str:
-        return self.domain
+    def get_allowed_domain(self) -> str:
+        return self.allowed_domain
 
     def get_homepage(self) -> str:
         return self.homepage

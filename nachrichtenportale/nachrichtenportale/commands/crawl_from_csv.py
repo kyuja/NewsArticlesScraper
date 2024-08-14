@@ -27,7 +27,9 @@ class Command(ScrapyCommand):
         process = CrawlerProcess(get_project_settings())
 
         portale = read_csv_to_list(csv_file)
-        for portal in portale:
+        for index, portal in enumerate(portale):
+            if index > 1:
+                break
             process.crawl('gonnaCrawlThemAll', portal=portal)
 
         process.start()
