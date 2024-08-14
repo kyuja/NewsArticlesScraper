@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = "nachrichtenportale.spiders"
 # USER_AGENT = "nachrichtenportale (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -92,3 +92,5 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 DEPTH_LIMIT = 1
+
+COMMANDS_MODULE = "nachrichtenportale.commands"
