@@ -6,6 +6,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.exceptions import UsageError
 from scrapy.utils.project import get_project_settings
 
+# run command with "scrapy crawl_from_csv <file_path>"
 
 class Command(ScrapyCommand):
     requires_project = True

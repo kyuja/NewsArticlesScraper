@@ -32,7 +32,7 @@ class GonnacrawlthemallSpider(scrapy.Spider):
 
     def parse_item(self, response):
         self.logger.info("Item function called on %s", response.url)
-        item = items.NachrichtenportalItem()
+        item = items.PortalItem()
         item['portal'] = get_domain(response)
         item['today'] = str(datetime.now())
         item["nachricht_url"] = response.url
