@@ -1,22 +1,25 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-# useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+import csv
+import os
+from scrapy.utils.project import get_project_settings
 
 
-import json
+class CsvWriterPipeline:
 
-class JsonWriterPipeline:
     def open_spider(self, spider):
-        self.file = open('items.json', 'w')
+        settings = get_project_settings()
+        dir_path = settings.get('CSV_OUTPUT_PATH')
+        filepath = dir_path + spider.output_dir + '/' + spider.output_file
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        self.file_exists = os.path.exists(filepath)
+        self.file = open(filepath, 'a', newline='')
+        self.writer = csv.writer(self.file)
 
     def close_spider(self, spider):
         self.file.close()
 
     def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
+        if not self.file_exists:
+            self.writer.writerow(item.__dict__.keys())
+
+        self.writer.writerow(item.__dict__.values())
         return item

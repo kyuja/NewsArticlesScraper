@@ -7,7 +7,7 @@ from scrapy import signals
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
-from nachrichtenportale.nachrichtenportale.portal import Portal
+from nachrichtenportale.nachrichtenportale.portalcsv import PortalCSV
 
 
 class NachrichtenportaleSpiderMiddleware:

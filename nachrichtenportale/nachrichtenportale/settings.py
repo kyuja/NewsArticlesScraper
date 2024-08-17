@@ -62,7 +62,7 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "nachrichtenportale.pipelines.NachrichtenportalePipeline": 300,
+    "nachrichtenportale.pipelines.CsvWriterPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,3 +94,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 DEPTH_LIMIT = 1
 
 COMMANDS_MODULE = "nachrichtenportale.commands"
+
+CSV_INPUT_FILE = '../nachrichtenportale/nachrichtenportale/data/Portale.csv'
+
+CSV_OUTPUT_PATH = "../nachrichtenportale/nachrichtenportale/data/"

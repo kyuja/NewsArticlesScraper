@@ -1,19 +1,14 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
-
-from scrapy import Item, Field
-from dataclasses import dataclass
+from scrapy import Item
+from dataclasses import dataclass, field
+from typing import Optional
 
 
 @dataclass
-class PortalItem(Item):
-    portal = Field()
-    today = Field()
-    nachricht_url = Field()
-    nachricht_title = Field(default='Nicht angegeben')
-    nachricht_keywords = Field(default='Nicht angegeben')
-    nachricht_text = Field()
-    nachricht_date = Field(default='Nicht angegeben')
-    # nachricht_extern_links = Field()
+class PortalItem:
+    portal: Optional[str] = field(default=None)
+    today: Optional[str] = field(default=None)
+    url: Optional[str] = field(default=None)
+    title: Optional[str] = field(default=None)
+    keywords: Optional[str] = field(default=None)
+    text: Optional[str] = field(default=None)
+    date: Optional[str] = field(default=None)

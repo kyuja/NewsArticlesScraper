@@ -1,23 +1,36 @@
 from datetime import datetime
+import tldextract
 
 import scrapy
 from scrapy import Request
+from scrapy.loader import ItemLoader
+from itemloaders.processors import TakeFirst
 
-from ..import items
-from ..helper_functions import get_domain
+from ..items import PortalItem
+
+
+def get_domain(url):
+    url = tldextract.extract(url)
+    if url.subdomain == 'www' or url.subdomain == '':
+        return url.domain
+    else:
+        return url.subdomain
 
 
 class GonnacrawlthemallSpider(scrapy.Spider):
     name = "gonnaCrawlThemAll"
     homepage_selector = ''
     article_selector = ''
+    output_dir = ''
+    output_file = str(datetime.now().date()) + '.csv'
 
-    def __init__(self, portal=None, *args, **kwargs):
+    def __init__(self, portal_csv=None, *args, **kwargs):
         super(GonnacrawlthemallSpider, self).__init__(*args, **kwargs)
-        self.start_urls = [portal.get_url()]
-        self.allowed_domains = [portal.get_allowed_domain()]
-        self.homepage_selector = portal.get_homepage()
-        self.article_selector = portal.get_article()
+        self.start_urls = [portal_csv.get_url()]
+        self.allowed_domains = [portal_csv.get_allowed_domain()]
+        self.homepage_selector = portal_csv.get_homepage()
+        self.article_selector = portal_csv.get_article()
+        self.output_dir = get_domain(self.start_urls[0])
 
     def parse(self, response):
         self.logger.info("Parse function called on %s, with selectors %s and %s", self.start_urls,
@@ -32,11 +45,13 @@ class GonnacrawlthemallSpider(scrapy.Spider):
 
     def parse_item(self, response):
         self.logger.info("Item function called on %s", response.url)
-        item = items.PortalItem()
-        item['portal'] = get_domain(response)
-        item['today'] = str(datetime.now())
-        item["nachricht_url"] = response.url
-        item["nachricht_title"] = response.css('title::text').get()
-        item['nachricht_keywords'] = response.css('meta[name="keywords"]::attr(content)').get()
-        item['nachricht_text'] = response.css(self.article_selector).getall()
-        item['nachricht_date'] = response.css('meta[name="date"]::attr(content)')
+        loader = ItemLoader(item=PortalItem(), response=response)
+        loader.add_value('portal', get_domain(response.url))
+        loader.add_value('today', str(datetime.now()))
+        loader.add_value('url', response.url)
+        loader.add_css('title', 'title::text', TakeFirst())
+        loader.add_css('keywords', 'meta[name="keywords"]::attr(content)')
+        loader.add_css('text', self.article_selector)
+        loader.add_css('date', 'meta[name="date"]::attr(content)')
+
+        yield loader.load_item()

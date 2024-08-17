@@ -1,4 +1,4 @@
-class Portal:
+class PortalCSV:
     url: str
     allowed_domain: str
     homepage: str
