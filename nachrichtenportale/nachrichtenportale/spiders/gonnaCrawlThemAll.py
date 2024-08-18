@@ -4,7 +4,7 @@ import tldextract
 import scrapy
 from scrapy import Request
 from scrapy.loader import ItemLoader
-from itemloaders.processors import TakeFirst
+from itemloaders.processors import TakeFirst, Join
 
 from ..items import PortalItem
 
@@ -51,7 +51,7 @@ class GonnacrawlthemallSpider(scrapy.Spider):
         loader.add_value('url', response.url)
         loader.add_css('title', 'title::text', TakeFirst())
         loader.add_css('keywords', 'meta[name="keywords"]::attr(content)')
-        loader.add_css('text', self.article_selector)
+        loader.add_css('text', self.article_selector + ' p *::text', Join(separator=' '))
         loader.add_css('date', 'meta[name="date"]::attr(content)')
 
         yield loader.load_item()

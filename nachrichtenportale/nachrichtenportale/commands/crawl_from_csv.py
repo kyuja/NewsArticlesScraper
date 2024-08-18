@@ -41,7 +41,7 @@ class Command(ScrapyCommand):
 
         portale = get_csv_values(csv_file)
         for index, portal in enumerate(portale):
-            if index > 1:
+            if index > 0:
                 break
             process.crawl('gonnaCrawlThemAll', portal_csv=portal)
 

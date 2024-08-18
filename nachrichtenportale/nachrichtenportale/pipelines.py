@@ -1,6 +1,7 @@
 import csv
 import os
 from scrapy.utils.project import get_project_settings
+from dataclasses import fields, asdict
 
 
 class CsvWriterPipeline:
@@ -18,8 +19,10 @@ class CsvWriterPipeline:
         self.file.close()
 
     def process_item(self, item, spider):
-        if not self.file_exists:
-            self.writer.writerow(item.__dict__.keys())
+        item_dict = asdict(item)
 
-        self.writer.writerow(item.__dict__.values())
+        if not self.file_exists:
+            self.writer.writerow(item_dict.keys())
+
+        self.writer.writerow(item_dict.values())
         return item
