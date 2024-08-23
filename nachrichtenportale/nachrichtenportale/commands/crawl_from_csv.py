@@ -6,8 +6,6 @@ from scrapy.utils.project import get_project_settings
 import csv
 
 
-# run command with "scrapy crawl_from_csv <file_path>"
-
 def get_csv_values(csv_file):
     portale = []
     # '../nachrichtenportale/nachrichtenportale/data/Portale.csv'
@@ -40,9 +38,7 @@ class Command(ScrapyCommand):
         process = CrawlerProcess(get_project_settings())
 
         portale = get_csv_values(csv_file)
-        for index, portal in enumerate(portale):
-            if index > 0:
-                break
+        for portal in portale:
             process.crawl('gonnaCrawlThemAll', portal_csv=portal)
 
         process.start()
