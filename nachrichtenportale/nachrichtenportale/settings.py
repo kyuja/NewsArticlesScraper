@@ -13,7 +13,7 @@ SPIDER_MODULES = ["nachrichtenportale.spiders"]
 NEWSPIDER_MODULE = "nachrichtenportale.spiders"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = "nachrichtenportale (+http://www.yourdomain.com)"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -26,7 +26,7 @@ ROBOTSTXT_OBEY = False
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -34,6 +34,7 @@ COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_PORT = None
 
 # Override the default request headers:
 # DEFAULT_REQUEST_HEADERS = {
@@ -98,3 +99,5 @@ COMMANDS_MODULE = "nachrichtenportale.commands"
 CSV_INPUT_FILE = '../nachrichtenportale/nachrichtenportale/data/Portale.csv'
 
 CSV_OUTPUT_PATH = "../nachrichtenportale/nachrichtenportale/data/"
+
+

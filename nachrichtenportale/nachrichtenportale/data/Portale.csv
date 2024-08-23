@@ -5,13 +5,13 @@ https://taz.de/,taz.de,#pages,article
 https://t3n.de/,t3n.de,.neos-contentcollection,article
 https://web.de/,web.de,main,article
 https://www.apotheken-umschau.de/,www.apotheken-umschau.de,main,article
-https://www.augsburger-allgemeine.de/,www.augsburger-allgemeine.de,#page_body,#page_body
+https://www.augsburger-allgemeine.de/,www.augsburger-allgemeine.de,#page-body,#page-body
 https://www.autobild.de/,www.autobild.de,.homepage,.article
 https://www.auto-motor-und-sport.de/,www.auto-motor-und-sport.de,[data-stroeer="Einfaerbungscontainer"],article
 https://www.bild.de/,www.bild.de,main,article
 https://www.br.de/nachrichten/,www.br.de,article,article
 https://www.brigitte.de/,www.brigitte.de,.page__inner-content,.article__body
-https://www.businessinsider.de/,www.buisinessinsider.de,main,.article-body
+https://www.businessinsider.de/,businessinsider.de,main,.article-body
 https://www.bunte.de/,www.bunte.de,main,article
 https://www.buzzfeed.de/,www.buzzfeed.de,[role="main"],article
 https://www.chip.de/,www.chip.de,main,article
@@ -34,7 +34,7 @@ https://www.heise.de/,www.heise.de,[data-upscore-zone="ho_homepage_full"],articl
 https://www.hna.de/,www.hna.de,[role="main"],article
 https://www.hessenschau.de/index.html,www.hessenschau.de,main,article
 https://www.infranken.de/,www.infranken.de,main,article
-https://www.kicker.de/,www.kicker.de,#kick_ressort,article
+https://www.kicker.de/,www.kicker.de,#kick__ressort,article
 https://www.kino.de/,www.kino.de,.alice-root-container,article
 https://www.kreiszeitung.de/,www.kreiszeitung.de,[role="main"],article
 https://www.ksta.de/,www.ksta.de,.dm-container-content,article
@@ -54,7 +54,7 @@ https://www.rbb24.de,www.rbb24.de,.main,article
 https://www.rnd.de/,www.rnd.de,.HomepageLayoutstyled__Grid-sc-1qaxglx-0,article
 https://www.rtl.de/,www.rtl.de,main,.article-body
 https://www.ruhrnachrichten.de/,www.ruhrnachrichten.de,main,article
-https://www.spiegel.de/,www.spiegel.de,main,aticle
+https://www.spiegel.de/,www.spiegel.de,main,article
 https://www.sport.de/,www.sport.de,.hs-content-container,.hs-main
 https://www.sport1.de/,www.sport1.de,#s1-main-content,.article-section-main-area-container
 https://www.sr.de/sr/home/nachrichten/index.html,www.sr.de,.outer-wrapper,.article__container
@@ -68,7 +68,7 @@ https://www.swr.de,www.swr.de,main,.detail-body
 https://www.tag24.de/,www.tag24.de,#article-grid,.article__content
 https://www.tagesschau.de/,www.tagesschau.de,main,article
 https://www.tagesspiegel.de/,www.tagesspiegel.de,main,article
-https://www.transfermarkt.de/,www.transfermarkt.de,#startseite,.news-content
+https://www.transfermarkt.de,www.transfermarkt.de,#startseite,.news-content
 https://www.t-online.de/,www.t-online.de,main,[data-article-body]
 https://www.tvspielfilm.de/news/,www.tvspielfilm.de,.posts-column,article
 https://www.tz.de/,www.tz.de,[role="main"],article
