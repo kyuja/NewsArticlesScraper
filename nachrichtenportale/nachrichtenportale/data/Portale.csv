@@ -3,7 +3,7 @@ https://efahrer.chip.de/,efahrer.chip.de,#home-content,article
 https://rp-online.de/,rp-online.de,main,article
 https://taz.de/,taz.de,#pages,article
 https://t3n.de/,t3n.de,.neos-contentcollection,article
-https://web.de/,web.de,main,article
+https://web.de,web.de,[data-content],article
 https://www.apotheken-umschau.de/,www.apotheken-umschau.de,main,article
 https://www.augsburger-allgemeine.de/,www.augsburger-allgemeine.de,#page-body,#page-body
 https://www.autobild.de/,www.autobild.de,.homepage,.article
@@ -11,7 +11,7 @@ https://www.auto-motor-und-sport.de/,www.auto-motor-und-sport.de,[data-stroeer="
 https://www.bild.de/,www.bild.de,main,article
 https://www.br.de/nachrichten/,www.br.de,article,article
 https://www.brigitte.de/,www.brigitte.de,.page__inner-content,.article__body
-https://www.businessinsider.de/,businessinsider.de,main,.article-body
+https://www.businessinsider.de/,www.businessinsider.de,main,.article-body
 https://www.bunte.de/,www.bunte.de,main,article
 https://www.buzzfeed.de/,www.buzzfeed.de,[role="main"],article
 https://www.chip.de/,www.chip.de,main,article
@@ -29,7 +29,7 @@ https://www.gamestar.de/,www.gamestar.de,.main,.maincontent
 https://www.giga.de/,www.giga.de,.alice-root-container,article
 https://www.gmx.net/,www.gmx.net,[data-content],article
 https://www.golem.de/,www.golem.de,#screen,article
-https://www.handelsblatt.com/,www.handelsblatt.com,main,article
+https://www.handelsblatt.com,www.handelsblatt.com,main,article
 https://www.heise.de/,www.heise.de,[data-upscore-zone="ho_homepage_full"],article
 https://www.hna.de/,www.hna.de,[role="main"],article
 https://www.hessenschau.de/index.html,www.hessenschau.de,main,article

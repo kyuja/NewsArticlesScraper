@@ -39,6 +39,8 @@ class Command(ScrapyCommand):
 
         portale = get_csv_values(csv_file)
         for portal in portale:
-            process.crawl('gonnaCrawlThemAll', portal_csv=portal)
-
+            if 'handelsblatt.com' in portal.url:
+                process.crawl('seleniumCrawlThemAll', portal_csv=portal)
+            else:
+                process.crawl('gonnaCrawlThemAll', portal_csv=portal)
         process.start()
