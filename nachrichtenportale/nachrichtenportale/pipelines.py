@@ -1,7 +1,6 @@
 import csv
 import os
 import re
-
 from scrapy.utils.project import get_project_settings
 from dataclasses import asdict
 from datetime import datetime
@@ -12,12 +11,13 @@ class CsvWriterPipeline:
     def open_spider(self, spider):
         settings = get_project_settings()
         self.dir_path = settings.get('CSV_OUTPUT_PATH')
-        filepath_csv = self.dir_path + spider.output_dir + '/' + spider.output_file
+        filepath_csv = self.dir_path + spider.output_dir + '/2' + spider.output_file
         os.makedirs(os.path.dirname(filepath_csv), exist_ok=True)
+        header = ['portal', 'today', 'url', 'title', 'keywords', 'text', 'date']
 
-        self.file_exists = os.path.exists(filepath_csv)
         self.file_csv = open(filepath_csv, 'a', newline='', encoding="utf-8")
         self.writer_csv = csv.writer(self.file_csv)
+        self.writer_csv.writerow(header)
 
     def close_spider(self, spider):
         self.file_csv.close()
@@ -25,11 +25,11 @@ class CsvWriterPipeline:
     def process_item(self, item, spider):
         item_dict = asdict(item)
 
-        if not self.file_exists:
-            self.writer_csv.writerow(item_dict.keys())
-
-        filename_txt = item_dict['title'][0]
-        filename_txt = re.sub(r'\W', '', filename_txt)
+        if item_dict['title'][0]:
+            filename_txt = item_dict['title'][0]
+            filename_txt = re.sub(r'\W', '', filename_txt)
+        else:
+            filename_txt = 'NA' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         today = datetime.now().strftime('%Y-%m-%d')
         filepath_txt = self.dir_path + spider.output_dir + '/' + today + '/' + filename_txt + '.txt'
         os.makedirs(os.path.dirname(filepath_txt), exist_ok=True)

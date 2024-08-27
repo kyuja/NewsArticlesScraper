@@ -8,7 +8,6 @@ import csv
 
 def get_csv_values(csv_file):
     portale = []
-    # '../nachrichtenportale/nachrichtenportale/data/Portale.csv'
     with open(csv_file) as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -39,7 +38,7 @@ class Command(ScrapyCommand):
 
         portale = get_csv_values(csv_file)
         for portal in portale:
-            if 'handelsblatt.com' in portal.url:
+            if 'handelsblatt' or 'golem' in portal.url:
                 process.crawl('seleniumCrawlThemAll', portal_csv=portal)
             else:
                 process.crawl('gonnaCrawlThemAll', portal_csv=portal)
