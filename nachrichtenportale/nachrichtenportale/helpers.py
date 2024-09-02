@@ -20,12 +20,42 @@ def check_for_keywords(url):
         return True
 
 
-def check_url(url):
-    parsed_url = urlparse(url)
-    if check_for_keywords(parsed_url.path):
-        return True
-    else:
+def check_url_ending(url):
+    if url.endswith('.jsn'):
         return False
+    elif url.endswith('.pdf'):
+        return False
+    elif url.endswith('.xml'):
+        return False
+    else:
+        return True
+
+
+def check_for_mail(url):
+    if 'mailto' in url:
+        return False
+    else:
+        return True
+
+
+def check_for_javascript(url):
+    if 'javascript' in url:
+        return False
+    else:
+        return True
+
+
+def check_url(url):
+    if check_for_mail(url) and check_for_javascript(url):
+        if 'golem' in url:
+            if 'specials' in url:
+                return False
+        parsed_url = urlparse(url)
+        if check_for_keywords(parsed_url.path) and check_url_ending(parsed_url.path):
+            return True
+        else:
+            return False
+    return False
 
 
 def get_domain(url):

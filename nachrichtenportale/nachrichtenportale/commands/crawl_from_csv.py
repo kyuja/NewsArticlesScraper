@@ -11,7 +11,8 @@ def get_csv_values(csv_file):
     with open(csv_file) as file:
         reader = csv.DictReader(file)
         for row in reader:
-            portal = PortalCSV(row['start_url'], row['allowed_domains'], row['homepage'], row['article'])
+            portal = PortalCSV(row['start_url'], row['allowed_domains'], row['homepage'],
+                               row['article'], row['crawler'])
             portale.append(portal)
     return portale
 
@@ -38,8 +39,8 @@ class Command(ScrapyCommand):
 
         portale = get_csv_values(csv_file)
         for portal in portale:
-            if 'handelsblatt' or 'golem' in portal.url:
-                process.crawl('seleniumCrawlThemAll', portal_csv=portal)
-            else:
+            if portal.crawler == 'scrapy':
                 process.crawl('gonnaCrawlThemAll', portal_csv=portal)
+            else:
+                process.crawl('seleniumCrawlThemAll', portal_csv=portal)
         process.start()

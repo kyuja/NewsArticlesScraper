@@ -7,7 +7,6 @@ from scrapy import Selector
 from scrapy import Spider
 from scrapy.http import HtmlResponse
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from scrapy import Request
 
@@ -31,8 +30,7 @@ class SeleniumCrawlThemAllSpider(Spider):
         self.homepage_selector = portal_csv.get_homepage()
         self.article_selector = portal_csv.get_article()
         self.output_dir = get_domain(self.start_urls[0])
-        chrome_options = Options()
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome()
 
     def parse(self, response):
         self.logger.info("Parse function called on %s, with selectors %s and %s", self.start_urls[0],
@@ -57,8 +55,8 @@ class SeleniumCrawlThemAllSpider(Spider):
         time.sleep(3)
 
         html = self.driver.page_source
-        response = HtmlResponse(url=self.driver.current_url, body=html, encoding='utf-8')
-        item = self.load_item(response)
+        response_obj = HtmlResponse(url=self.driver.current_url, body=html, encoding='utf-8')
+        item = self.load_item(response_obj)
         self.print_progress(response)
         yield item
 
@@ -71,7 +69,7 @@ class SeleniumCrawlThemAllSpider(Spider):
             if accept_button:
                 accept_button.click()
                 self.logger.info("Button clicked")
-                time.sleep(5)
+                time.sleep(4)
         except NoSuchElementException as e:
             self.logger.info("Button not found")
         finally:

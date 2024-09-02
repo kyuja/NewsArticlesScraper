@@ -24,11 +24,10 @@ class CsvWriterPipeline:
 
     def process_item(self, item, spider):
         item_dict = asdict(item)
-
-        if item_dict['title'][0]:
+        try:
             filename_txt = item_dict['title'][0]
             filename_txt = re.sub(r'\W', '', filename_txt)
-        else:
+        except IndexError:
             filename_txt = 'NA' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         today = datetime.now().strftime('%Y-%m-%d')
         filepath_txt = self.dir_path + spider.output_dir + '/' + today + '/' + filename_txt + '.txt'
