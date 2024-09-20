@@ -11,7 +11,7 @@ class CsvWriterPipeline:
     def open_spider(self, spider):
         settings = get_project_settings()
         self.dir_path = settings.get('CSV_OUTPUT_PATH')
-        filepath_csv = self.dir_path + spider.output_dir + '/2' + spider.output_file
+        filepath_csv = self.dir_path + spider.output_dir + '/' + spider.output_file
         os.makedirs(os.path.dirname(filepath_csv), exist_ok=True)
         header = ['portal', 'today', 'url', 'title', 'keywords', 'text', 'date']
 
