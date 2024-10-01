@@ -51,7 +51,7 @@ DEPTH_LIMIT = 1
 
 COMMANDS_MODULE = "scraperFiles.commands"
 
-CSV_INPUT_FILE = '..scraperProject/scraperFiles/data/Portale.csv'
+CSV_INPUT_FILE = '../scraperProject/scraperFiles/data/Portale.csv'
 
 CSV_OUTPUT_PATH = "C:/Users/Esther/Documents/Uni/Master/MA/Daten/"
 
