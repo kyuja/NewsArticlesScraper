@@ -53,7 +53,7 @@ COMMANDS_MODULE = "scraperFiles.commands"
 
 CSV_INPUT_FILE = '../scraperProject/scraperFiles/data/Portale.csv'
 
-CSV_OUTPUT_PATH = "C:/Users/Esther/Documents/Uni/Master/MA/Daten/"
+CSV_OUTPUT_PATH = "C:/Users/Sophia/Desktop/Math stuff"
 
 LOG_ENABLED = True
 LOG_LEVEL = "INFO"
